@@ -2,13 +2,14 @@
 import { Outlet } from 'react-router'
 import './App.css'
 import CommonLayout from './components/CommonLayout'
+import HomeHero from './pages/HomeHero'
 
 function App() {
 
   return (
     <>
     <CommonLayout>
-      <h1 className='text-3xl font-bold'>Welcome</h1>
+      <HomeHero/>
       <Outlet/>
     </CommonLayout>
     </>
