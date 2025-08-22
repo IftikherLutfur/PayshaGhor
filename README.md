@@ -1,6 +1,6 @@
 # Paysha Ghor  
 
-**Paysha Ghor** is a Digital Wallet User Interface inspired by Bangladeshi culture and design.  
+**Paysha Ghor** is a Digital Wallet User Interface inspired by Bkash, Nagad, Rocket.  
 
 ## 🚀 Project Status  
 This project is currently **in progress**.  
