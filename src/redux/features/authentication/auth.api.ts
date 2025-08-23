@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // features/auth/auth.api.ts
 import axiosBaseQuery from "@/redux/axiosBaseQuery";
-import type { RegisterPayload } from "@/types/auth.type";
+import type { LoginPayload, RegisterPayload } from "@/types/auth.type";
 import { createApi } from "@reduxjs/toolkit/query/react";
  
 
@@ -16,7 +16,16 @@ export const authApi = createApi({
         data: credentials,
       }),
     }),
+
+    login: builder.mutation<any, LoginPayload>({
+      query: (credentials) => ({
+        url: "/auth/login",
+        method: "POST",
+        data: credentials,
+      }),
+    }),
+
   }),
 });
 
-export const { useRegisterMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation } = authApi;

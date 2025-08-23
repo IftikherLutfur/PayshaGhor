@@ -1,4 +1,6 @@
 import { Logo } from "@/assets/logo"
+import { Button } from "../ui/button"
+import { Link } from "react-router"
 
 export function Navbar () {
     return (
@@ -11,46 +13,31 @@ export function Navbar () {
       <nav aria-label="Global" className="hidden md:block">
         <ul className="flex items-center gap-6 text-sm">
           <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> About </a>
+            <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+             About
+              </a>
           </li>
-
           <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Careers </a>
-          </li>
-
-          <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> History </a>
-          </li>
-
-          <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Services </a>
-          </li>
-
-          <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Projects </a>
-          </li>
-
-          <li>
-            <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Blog </a>
+            <a className="text-gray-500 transition hover:text-gray-500/75" href="#">
+             Contact us
+              </a>
           </li>
         </ul>
       </nav>
 
       <div className="flex items-center gap-4">
         <div className="sm:flex sm:gap-4">
-          <a
-            className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-            href="#"
-          >
+          <Link to="/login" >
+          <Button >
             Login
-          </a>
-
-          <a
-            className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-            href="#"
-          >
+          </Button>    
+         </Link> 
+         <Link to="/register" >
+          <Button variant="secondary" >
             Register
-          </a>
+          </Button>    
+         </Link> 
+  
         </div>
 
         <button

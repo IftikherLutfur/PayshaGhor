@@ -6,6 +6,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
 import { useRegisterMutation } from "@/redux/features/authentication/auth.api"
+import { useNavigate } from "react-router"
  
 const formSchema = z.object({
   email: z.email(),
@@ -15,6 +16,7 @@ const formSchema = z.object({
  
 export function RegisterForm() {
     const [register] = useRegisterMutation()
+    const navigate = useNavigate()
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -29,6 +31,9 @@ export function RegisterForm() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const response = await register(values).unwrap();
+      if(response.success){
+        navigate('/login')
+      }
       console.log(response);
     } catch (error) {
       console.error(error);
