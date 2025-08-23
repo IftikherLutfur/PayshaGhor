@@ -1,11 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { RouterProvider } from 'react-router'
-import { router } from './routes/index.tsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router";
+import { store } from "./redux/store";
+import { router } from "./routes/index";
+import "./index.css";
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById("root");
+if (!container) throw new Error("Root container not found");
+
+createRoot(container).render(
   <StrictMode>
-   <RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </StrictMode>
+);

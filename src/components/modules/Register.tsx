@@ -5,6 +5,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select"
+import { useRegisterMutation } from "@/redux/features/authentication/auth.api"
  
 const formSchema = z.object({
   email: z.email(),
@@ -13,6 +14,7 @@ const formSchema = z.object({
 })
  
 export function RegisterForm() {
+    const [register] = useRegisterMutation()
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -24,10 +26,13 @@ export function RegisterForm() {
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const response = await register(values).unwrap();
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return(
