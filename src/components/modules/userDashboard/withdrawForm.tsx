@@ -14,23 +14,20 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useSendMoneyMutation } from "@/redux/features/wallet/wallet.api"
+import { useWithdrawMutation } from "@/redux/features/wallet/wallet.api"
 import { toast } from "sonner"
 
 const formSchema = z.object({
-  // from: z.string().min(2, "At least 2 characters required").max(50),
-  to: z.string().min(2, "At least 2 characters required").max(50),
   amount: z
     .number()
     .min(1, "Amount must be positive"),
 })
 
-export default function SendMoneyForm() {
-  const [sendMoney] = useSendMoneyMutation()
+export default function WithdrawForm() {
+    const [withdraw] = useWithdrawMutation()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      to: "",
       amount: undefined,
     },
   })
@@ -44,38 +41,23 @@ export default function SendMoneyForm() {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const res = await sendMoney(values).unwrap()
+      const res = await withdraw(values).unwrap()
       if(res.success){
         toast.success(res.message)
       }
     } catch (err: any) {
       console.error( err)
     }
+    console.log(values)
   }
 
   return (
-    <div className="px-4">
+    <div className="x px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-6">
-        <h2 className="text-2xl font-semibold text-center">Send Money</h2>
+        <h2 className="text-2xl font-semibold text-center">Withdraw Money </h2>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* From Field (read-only) */}
-
-            {/* To Field */}
-            <FormField
-              control={form.control}
-              name="to"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Reciever Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
             {/* Amount Field */}
             <FormField

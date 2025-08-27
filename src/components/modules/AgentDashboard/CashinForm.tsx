@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { useSendMoneyMutation } from "@/redux/features/wallet/wallet.api"
 import { toast } from "sonner"
+import { useCashinMutation } from "@/redux/features/wallet/wallet.api"
 
 const formSchema = z.object({
   // from: z.string().min(2, "At least 2 characters required").max(50),
@@ -25,8 +25,8 @@ const formSchema = z.object({
     .min(1, "Amount must be positive"),
 })
 
-export default function SendMoneyForm() {
-  const [sendMoney] = useSendMoneyMutation()
+export default function CashInForm() {
+  const [cashin] = useCashinMutation()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,21 +35,16 @@ export default function SendMoneyForm() {
     },
   })
 
-  // Set 'from' field automatically when userInfo is loaded
-  // useEffect(() => {
-  //   if (userInfo?.data?._id) {
-  //     form.setValue("from", userInfo?.data._id)
-  //   }
-  // }, [userInfo, form]) 
-
+  
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const res = await sendMoney(values).unwrap()
+      const res = await cashin(values).unwrap()
       if(res.success){
         toast.success(res.message)
       }
     } catch (err: any) {
-      console.error( err)
+      console.error(err)
+      toast.error(err?.data?.message )
     }
   }
 

@@ -16,6 +16,14 @@ export const walletApi = createApi({
       }),
     }),
 
+    popup: builder.mutation({
+      query: (transaction) => ({
+        url: "/wallet/deposite",
+        method: "POST",
+        data: transaction
+      }),
+    }),
+
     sendMoney: builder.mutation({
       query: (transaction) => ({
         url: "/wallet/sendMoney",
@@ -23,7 +31,47 @@ export const walletApi = createApi({
         data: transaction
       }),
     }),
+
+    withdraw: builder.mutation({
+      query: (transaction) => ({
+        url: "/wallet/withdraw",
+        method: "POST",
+        data: transaction
+      }),
+    }),
+    getOwnTransaction: builder.query({
+      query: (id: string) => ({
+        url: `/wallet/transaction/${id}`,
+        method: "GET",
+      }),
+    }),
+
+    cashin: builder.mutation({
+      query: (cashInInfo) => ({
+        url: "/wallet/cash-in",
+        method: "POST",
+        data: cashInInfo
+      }),
+    }),
+
+    cashout: builder.mutation({
+      query: (cashInInfo) => ({
+        url: "/wallet/cash-out",
+        method: "POST",
+        data: cashInInfo
+      }),
+    }),
+    
+
   }),
 });
 
-export const { useGetWalletQuery, useSendMoneyMutation } = walletApi;
+export const { 
+  useGetWalletQuery, 
+  useSendMoneyMutation, 
+  usePopupMutation, 
+  useWithdrawMutation,
+  useGetOwnTransactionQuery,
+  useCashinMutation,
+  useCashoutMutation
+ } = walletApi;

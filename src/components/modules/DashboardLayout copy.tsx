@@ -17,11 +17,11 @@ import { useUserInfoQuery } from "@/redux/features/authentication/auth.api"
 
 const items = [
   { title: "Home", url: "/", icon: Home },
-  { title: "User Operation", url: "userOperation", icon: Settings },
+  { title: "Cashin", url: "agentAction", icon: Settings },
   { title: "Transaction History", url: "transactions", icon: Settings },
 ]
 
-export function Dashboard() {
+export function DashboardForAgent() {
   const { data: userInfo } = useUserInfoQuery(undefined)
   const { data: wallet } = useGetWalletQuery(userInfo?.data._id)
 
