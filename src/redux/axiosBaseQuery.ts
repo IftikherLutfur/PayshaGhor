@@ -19,7 +19,7 @@ const axiosBaseQuery =
   async ({ url, method = "GET", data, params, headers }) => {
     try {
       const result = await axiosinstance({
-  url, // এখানে baseUrl আবার concat করার দরকার নাই, axiosinstance-এ baseURL আগেই দেওয়া আছে
+  url,
   method,
   data,
   params,

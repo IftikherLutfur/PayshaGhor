@@ -29,7 +29,7 @@ export const LoginForm = () => {
         const response = await login(values).unwrap();
         if (response.success) {
             navigate('/');
-            console.log(response); 
+            console.log(response);
         }
       } catch (error) {
         console.log(error)
