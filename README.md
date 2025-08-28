@@ -50,7 +50,7 @@ Add some preview screenshots of your UI here for better presentation.
 
 ⚡ Getting Started
 1️⃣ Clone the repository
-git clone https://github.com/your-username/paysha-ghor.git
+
 cd paysha-ghor
 
 2️⃣ Install dependencies
@@ -59,18 +59,14 @@ npm install
 3️⃣ Run the development server
 npm run dev
 
-
-💻 Open http://localhost:3000
- to view it in your browser.
-
 4️⃣ Build for production
 npm run build
 
 🔒 Security Practices
 
-Passwords are hashed with bcrypt
+#### Passwords are hashed with bcrypt
 
-Authentication & Authorization with JWT
+#### Authentication & Authorization with JWT
 
-Persisted login for better user experience
+#### Persisted login for better user experience
 
