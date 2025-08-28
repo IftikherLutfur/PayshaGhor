@@ -24,7 +24,7 @@ const formSchema = z.object({
 })
 
 export default function PopupForm() {
-    const [popup] = usePopupMutation()
+  const [popup] = usePopupMutation()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,11 +42,11 @@ export default function PopupForm() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const res = await popup(values).unwrap()
-      if(res.success){
+      if (res.success) {
         toast.success(res.message)
       }
     } catch (err: any) {
-      console.error( err)
+      console.error(err)
     }
     console.log(values)
   }

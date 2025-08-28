@@ -8,3 +8,10 @@ export interface LoginPayload {
   email: string;
   password: string;
 }
+
+export interface IUserUpdate{
+    name?:string;
+    email?:string;
+    currentPassword: string
+    newPassword?:string;
+}

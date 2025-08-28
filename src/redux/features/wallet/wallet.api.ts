@@ -39,6 +39,7 @@ export const walletApi = createApi({
         data: transaction
       }),
     }),
+    
     getOwnTransaction: builder.query({
       query: (id: string) => ({
         url: `/wallet/transaction/${id}`,

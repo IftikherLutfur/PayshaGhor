@@ -6,42 +6,33 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { Link } from "react-router"
-import { useGetWalletQuery } from "@/redux/features/wallet/wallet.api"
-import { useUserInfoQuery } from "@/redux/features/authentication/auth.api"
+
 
 const items = [
   { title: "Home", url: "/", icon: Home },
-  { title: "User Operation", url: "userOperation", icon: Settings },
-  { title: "Transaction History", url: "transactions", icon: Settings },
+  { title: "Overview", url: "", icon: Settings },
+  { title: "All Agents", url: "all-agents", icon: Settings },
+  { title: "All Users", url: "all-users", icon: Settings },
+  { title: "All Transactions", url: "all-transactions", icon: Settings },
   { title: "Edit Profile", url: "edit-profile", icon: Settings },
 ]
 
-export function Dashboard() {
-  const { data: userInfo } = useUserInfoQuery(undefined)
-  const { data: wallet } = useGetWalletQuery(userInfo?.data._id)
+export function DashboardForAdmin() {
 
   return (
     <Sidebar className="border-r bg-white shadow-md">
       {/* Header with balance */}
-      <SidebarHeader>
-        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl p-4 shadow-lg">
-          <h1 className="text-lg font-semibold">My Balance</h1>
-          <p className="text-2xl font-bold mt-1">
-            {wallet?.data?.balance ?? 0} ৳
-          </p>
-        </div>
-      </SidebarHeader>
+    
 
       {/* Sidebar Menu */}
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="text-gray-500 uppercase text-xs tracking-wide">
+          <SidebarGroupLabel className="text-gray-500 uppercase text-xs">
             Main Menu
           </SidebarGroupLabel>
           <SidebarGroupContent>

@@ -69,26 +69,34 @@ export default function TransactionHistory() {
                             {new Date(txn.createdAt).toLocaleDateString()}
                           </td>
                           <td className="border border-gray-200 px-4 py-2 font-medium">
-                            {txn.type === "WITHDRAW" ? (
-                              <span className="text-red-600">Withdraw</span>
-                            ) : txn.type === "DEPOSIT" ? (
-                              <span className="text-green-600">Deposit</span>
-                            ) : (
-                              <span className="text-blue-600">Send Money</span>
-                            )}
+                            {(() => {
+                              // normalize type to uppercase to match keys
+                              const typeKey = txn.type?.toUpperCase() || "";
+
+                              const typeMap: Record<string, { label: string; color: string }> = {
+                                AGENT_CASHOUT: { label: "Cashout", color: "text-red-600" },
+                                AGENT_CASHIN: { label: "Cashin", color: "text-green-600" },
+                                WITHDRAW: { label: "Withdraw", color: "text-red-600" },
+                                SENDMONEY: { label: "Send Money", color: "text-blue-600" },
+                                POPUP: { label: "Popup", color: "text-green-600" },
+                              };
+
+                              const txnType = typeMap[typeKey] || { label: "Undefined", color: "text-gray-500" };
+
+                              return <span className={txnType.color}>{txnType.label}</span>;
+                            })()}
                           </td>
                           <td className="border border-gray-200 px-4 py-2 text-gray-800">
                             {txn.amount} ৳
                           </td>
                           <td className="border border-gray-200 px-4 py-2">
                             <span
-                              className={`px-2 py-1 rounded text-xs font-semibold ${
-                                txn.status === "success"
-                                  ? "bg-green-100 text-green-700"
-                                  : txn.status === "pending"
+                              className={`px-2 py-1 rounded text-xs font-semibold ${txn.status === "success"
+                                ? "bg-green-100 text-green-700"
+                                : txn.status === "pending"
                                   ? "bg-yellow-100 text-yellow-700"
                                   : "bg-red-100 text-red-700"
-                              }`}
+                                }`}
                             >
                               {txn.status || "N/A"}
                             </span>
@@ -113,11 +121,10 @@ export default function TransactionHistory() {
                     <button
                       key={i + 1}
                       onClick={() => goToPage(i + 1)}
-                      className={`px-3 py-1 border rounded ${
-                        currentPage === i + 1
-                          ? "bg-blue-500 text-white"
-                          : "bg-white"
-                      }`}
+                      className={`px-3 py-1 border rounded ${currentPage === i + 1
+                        ? "bg-blue-500 text-white"
+                        : "bg-white"
+                        }`}
                     >
                       {i + 1}
                     </button>

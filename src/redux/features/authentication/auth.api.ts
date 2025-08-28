@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // features/auth/auth.api.ts
 import axiosBaseQuery from "@/redux/axiosBaseQuery";
-import type { LoginPayload, RegisterPayload } from "@/types/auth.type";
+import type { IUserUpdate, LoginPayload, RegisterPayload } from "@/types/auth.type";
 import { createApi } from "@reduxjs/toolkit/query/react";
 
 
@@ -24,13 +24,13 @@ export const authApi = createApi({
         method: "POST",
         data: credentials,
       }),
-      invalidatesTags:["USER"]
+      invalidatesTags: ["USER"]
     }),
     logout: builder.mutation({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
-       
+
       }),
     }),
 
@@ -44,7 +44,45 @@ export const authApi = createApi({
       providesTags: ["USER"],
     }),
 
+    editUser: builder.mutation<any, IUserUpdate>({
+      query: (body) => {
+        return {
+          url: "/user/edit-profile",
+          method: "PATCH",
+          data: body,
+          headers: { "Content-Type": "application/json" }, // optional, backend যদি json expect করে
+        };
+      },
+    }),
+
+    approveAgent: builder.mutation({
+      query: ({ agentId, userStatus }) => ({
+        url: `/user/agent-approve/${agentId}`,
+        method: "PATCH",
+        data: { userStatus },  // ✅ must match backend
+      }),
+    }),
+
+    getAllUser: builder.query({
+      query: () => {
+        return {
+          url: "/user",
+          method: "GET"
+        }
+      }
+    }),
+    getAllTransaction: builder.query({
+      query: () => {
+        return {
+          url: "/wallet/transaction",
+          method: "GET"
+        }
+      }
+    }),
+
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useUserInfoQuery, useLogoutMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation, useUserInfoQuery, useLogoutMutation, useEditUserMutation, useGetAllUserQuery, useApproveAgentMutation,
+  useGetAllTransactionQuery
+} = authApi;
