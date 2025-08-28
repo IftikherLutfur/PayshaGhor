@@ -1,10 +1,10 @@
-💰 Paysha Ghor
+# 💰 Paysha Ghor
 
 Paysha Ghor is a Digital Wallet Web Application inspired by Bkash, Nagad, and Rocket.
 It provides a seamless and secure platform for users, agents, and admins to manage digital transactions.
 
-🚀 Features
-👤 User
+## 🚀 Features
+## 👤 User
 
 💵 Deposit Money (via Popup)
 
@@ -14,7 +14,7 @@ It provides a seamless and secure platform for users, agents, and admins to mana
 
 📑 View transaction history
 
-🧑‍💼 Agent
+## 🧑‍💼 Agent
 
 💰 Add money to a user wallet (Cash-in)
 
@@ -22,7 +22,7 @@ It provides a seamless and secure platform for users, agents, and admins to mana
 
 📊 View all transactions handled by the agent
 
-🛡️ Admin
+## 🛡️ Admin
 
 👥 Manage Users (view, block/unblock)
 
@@ -34,9 +34,9 @@ It provides a seamless and secure platform for users, agents, and admins to mana
 
 🌐 Common (All Roles)
 
-🔑 Profile Management (update name, phone, and password)
+## 🔑 Profile Management (update name, phone, and password)
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 Category	Technology
 ⚙️ Framework	React.js, React Router
 🧠 State Mgmt.	Redux Toolkit + RTK Query
@@ -50,7 +50,6 @@ Add some preview screenshots of your UI here for better presentation.
 
 ⚡ Getting Started
 1️⃣ Clone the repository
-git clone https://github.com/your-username/paysha-ghor.git
 cd paysha-ghor
 
 2️⃣ Install dependencies
@@ -70,11 +69,3 @@ Authentication & Authorization with JWT
 
 Persisted login for better user experience
 
-🤝 Contribution
-
-Contributions, issues, and feature requests are welcome!
-Feel free to fork this repo and submit a Pull Request.
-
-📜 License
-
-This project is licensed under the MIT License.
