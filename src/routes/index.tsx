@@ -5,7 +5,6 @@ import AdminOverview from "@/pages/Admin/AdminOverview";
 import AllAgents from "@/pages/Admin/AllAgent";
 import AllTransactions from "@/pages/Admin/AllTransaction";
 import AllUsers from "@/pages/Admin/AllUser";
-import AllUser from "@/pages/Admin/AllUser";
 import AgentActionPage from "@/pages/AgentDashboardPage/AgentActionPage";
 import { Contact } from "@/pages/Contact";
 import HomeHero from "@/pages/HomeHero";

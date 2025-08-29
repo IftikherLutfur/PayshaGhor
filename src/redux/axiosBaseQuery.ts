@@ -1,30 +1,36 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { BaseQueryFn } from "@reduxjs/toolkit/query";
-
 import type { AxiosRequestConfig, AxiosError } from "axios";
 import { axiosinstance } from "../lib/axios";
 
+interface AxiosBaseQueryArgs {
+  baseUrl?: string; // Optional, so you can skip if not needed
+}
+
+interface AxiosQueryArgs {
+  url: string;
+  method?: AxiosRequestConfig["method"];
+  data?: AxiosRequestConfig["data"];
+  params?: AxiosRequestConfig["params"];
+  headers?: AxiosRequestConfig["headers"];
+}
+
 const axiosBaseQuery =
-  ({ baseUrl }: { baseUrl: string }): BaseQueryFn<
-    {
-      url: string;
-      method?: AxiosRequestConfig["method"];
-      data?: AxiosRequestConfig["data"];
-      params?: AxiosRequestConfig["params"];
-      headers?: AxiosRequestConfig["headers"];
-    },
+  ({ baseUrl = "" }: AxiosBaseQueryArgs = {}): BaseQueryFn<
+    AxiosQueryArgs,
     unknown,
     unknown
   > =>
   async ({ url, method = "GET", data, params, headers }) => {
     try {
       const result = await axiosinstance({
-  url,
-  method,
-  data,
-  params,
-  headers,
-});
+        url: baseUrl + url, // ✅ use baseUrl here
+        method,
+        data,
+        params,
+        headers,
+      });
+
       return { data: result.data };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
