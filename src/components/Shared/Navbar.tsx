@@ -14,16 +14,16 @@ export function Navbar() {
   };
 
   return (
-  <header className="fixed top-0 left-0 w-full z-50 bg-amber-500 backdrop-blur-sm">
-  <div className="flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-    {/* Logo */}
+  <header className="w-full backdrop-blur-sm">
+  <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8">
+
     <Link to="/">
       <Logo />
     </Link>
 
     {/* Desktop Menu */}
     <nav className="hidden md:block">
-      <ul className="flex items-center gap-6 text-sm font-semibold text-white">
+      <ul className="flex items-center gap-6 text-sm font-semibold text-black">
         <li>
           <Link to="/" className="hover:text-yellow-400 transition-colors text-lg">
             Home
@@ -130,6 +130,7 @@ export function Navbar() {
       </ul>
     </div>
   )}
+  <hr />
 </header>
 
   );

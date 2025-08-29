@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { useGetAllTransactionQuery } from "@/redux/features/authentication/auth.api"
 import {
   Table,
@@ -11,24 +11,61 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function AllTransactions() {
   const { data: AllTransaction, isLoading } = useGetAllTransactionQuery(undefined)
   const [page, setPage] = useState(1)
   const pageSize = 5
 
+  // type filter state
+  const [typeFilter, setTypeFilter] = useState<
+    "POPUP" | "SENDMONEY" | "WITHDRAW" | "AGENT_CASHIN" | "AGENT_CASHOUT" | "ALL"
+  >("ALL")
+
+  const transactions = AllTransaction?.data || []
+
+  // filter by type
+  const filteredData = useMemo(() => {
+    if (typeFilter === "ALL") return transactions
+    return transactions.filter((tx: any) => tx.type === typeFilter)
+  }, [transactions, typeFilter])
+
+  const totalPages = Math.ceil(filteredData.length / pageSize)
+  const paginatedData = filteredData.slice((page - 1) * pageSize, page * pageSize)
+
   if (isLoading) {
     return <p className="text-center py-5">Loading...</p>
   }
 
-  const transactions = AllTransaction?.data || []
-  const totalPages = Math.ceil(transactions.length / pageSize)
-
-  const paginatedData = transactions.slice((page - 1) * pageSize, page * pageSize)
-
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">All Transactions</h1>
+
+      {/* Type Filter */}
+      <div className="mb-4">
+        <Select
+          onValueChange={(value: any) => {
+            setPage(1)
+            setTypeFilter(value)
+          }}
+          value={typeFilter}
+        >
+          <SelectTrigger className="w-[200px]">
+            <SelectValue placeholder="Filter by Type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="ALL">All Types</SelectItem>
+            <SelectItem value="POPUP">Popup</SelectItem>
+            <SelectItem value="SENDMONEY">Send Money</SelectItem>
+            <SelectItem value="WITHDRAW">Withdraw</SelectItem>
+            <SelectItem value="AGENT_CASHIN">Agent Cash-In</SelectItem>
+            <SelectItem value="AGENT_CASHOUT">Agent Cash-Out</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Table */}
       <Table>
         <TableCaption>A list of all recent transactions.</TableCaption>
         <TableHeader>
@@ -42,28 +79,36 @@ export default function AllTransactions() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {paginatedData.map((tx: any) => (
-            <TableRow key={tx._id}>
-              <TableCell className="font-medium">{tx._id}</TableCell>
-              <TableCell>{tx.from}</TableCell>
-              <TableCell>৳{tx.amount}</TableCell>
-              <TableCell>
-                <span
-                  className={`px-2 py-1 rounded text-xs font-semibold ${
-                    tx.type === "DEPOSIT" || tx.type === "POPUP"
-                      ? "bg-green-100 text-green-700"
-                      : tx.type === "SENDMONEY"
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-red-100 text-red-700"
-                  }`}
-                >
-                  {tx.type}
-                </span>
+          {paginatedData.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={6} className="text-center py-6 text-gray-500">
+                No transactions found
               </TableCell>
-              <TableCell>{tx.initiate}</TableCell>
-              <TableCell>{new Date(tx.createdAt).toLocaleString()}</TableCell>
             </TableRow>
-          ))}
+          ) : (
+            paginatedData.map((tx: any) => (
+              <TableRow key={tx._id}>
+                <TableCell className="font-medium">{tx._id}</TableCell>
+                <TableCell>{tx.from}</TableCell>
+                <TableCell>৳{tx.amount}</TableCell>
+                <TableCell>
+                  <span
+                    className={`px-2 py-1 rounded text-xs font-semibold ${
+                      tx.type === "POPUP" || tx.type === "AGENT_CASHIN"
+                        ? "bg-green-100 text-green-700"
+                        : tx.type === "SENDMONEY"
+                        ? "bg-blue-100 text-blue-700"
+                        : "bg-red-100 text-red-700"
+                    }`}
+                  >
+                    {tx.type}
+                  </span>
+                </TableCell>
+                <TableCell>{tx.initiate}</TableCell>
+                <TableCell>{new Date(tx.createdAt).toLocaleString()}</TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
 
@@ -77,11 +122,11 @@ export default function AllTransactions() {
           Previous
         </Button>
         <span>
-          Page {page} of {totalPages}
+          Page {page} of {totalPages || 1}
         </span>
         <Button
           variant="outline"
-          disabled={page === totalPages}
+          disabled={page === totalPages || totalPages === 0}
           onClick={() => setPage((p) => p + 1)}
         >
           Next

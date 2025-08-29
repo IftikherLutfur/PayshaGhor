@@ -63,6 +63,14 @@ export const authApi = createApi({
       }),
     }),
 
+    userStatus: builder.mutation({
+      query: ({ userId,userStatus }) => ({
+        url: `/user/userStatus/${userId}`,
+        method: "PATCH",
+        data: { userStatus },  // ✅ must match backend
+      }),
+    }),
+
     getAllUser: builder.query({
       query: () => {
         return {
@@ -84,5 +92,5 @@ export const authApi = createApi({
 });
 
 export const { useRegisterMutation, useLoginMutation, useUserInfoQuery, useLogoutMutation, useEditUserMutation, useGetAllUserQuery, useApproveAgentMutation,
-  useGetAllTransactionQuery
+  useGetAllTransactionQuery, useUserStatusMutation
 } = authApi;
