@@ -3,6 +3,15 @@
 Paysha Ghor is a Digital Wallet Web Application inspired by Bkash, Nagad, and Rocket.
 It provides a seamless and secure platform for users, agents, and admins to manage digital transactions.
 
+### Admin acoount: 
+`{email: ifti@mail.com | password: Ifti677#$%}`
+
+### Agent account: 
+`{email: Agent1@gmail.com | password: Agent1@}`
+
+### User account : 
+`{email: User1@gmai.com | password: User1@gmil.com}`
+
 ## 🚀 Features
 ## 👤 User
 
