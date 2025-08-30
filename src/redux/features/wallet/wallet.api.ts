@@ -6,7 +6,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 
 export const walletApi = createApi({
   reducerPath: "walletApi",
-  baseQuery: axiosBaseQuery({ baseUrl: import.meta.env.LIVE_LINK }),
+  baseQuery: axiosBaseQuery({ baseUrl: import.meta.env.VITE_LIVE_LINK }),
   endpoints: (builder) => ({
 
     getWallet: builder.query({

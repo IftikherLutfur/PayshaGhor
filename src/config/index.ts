@@ -1,3 +1,3 @@
 export const config = {
-    baseUrl: import.meta.env.LIVE_LINK
+    baseUrl: import.meta.env.VITE_LIVE_LINK
 }

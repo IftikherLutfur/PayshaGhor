@@ -15,7 +15,7 @@ import { Link } from "react-router"
 
 const items = [
   { title: "Home", url: "/", icon: Home },
-  { title: "Overview", url: "", icon: Settings },
+  { title: "Overview", url: "adminOverview", icon: Settings },
   { title: "All Agents", url: "all-agents", icon: Settings },
   { title: "All Users", url: "all-users", icon: Settings },
   { title: "All Transactions", url: "all-transactions", icon: Settings },

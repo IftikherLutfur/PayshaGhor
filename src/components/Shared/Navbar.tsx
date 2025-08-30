@@ -9,8 +9,8 @@ export function Navbar() {
   const [logout] = useLogoutMutation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    logout(undefined);
+  const handleLogout =async () => {
+    await logout(undefined).unwrap();
   };
 
   return (

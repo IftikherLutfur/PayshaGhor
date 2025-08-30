@@ -51,7 +51,7 @@ export default function CashOutForm() {
   return (
     <div className="px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-6">
-        <h2 className="text-2xl font-semibold text-center">Send Money</h2>
+        <h2 className="text-2xl font-semibold text-center">Cashout</h2>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

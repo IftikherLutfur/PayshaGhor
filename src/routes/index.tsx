@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       children:[
         {
         Component: AdminOverview,
-        path:""
+        path:"adminOverview"
        },
        {
         Component: UserOperation,

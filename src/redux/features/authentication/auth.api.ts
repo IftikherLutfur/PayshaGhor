@@ -7,7 +7,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: axiosBaseQuery({ baseUrl: import.meta.env.LIVE_LINK }),
+  baseQuery: axiosBaseQuery({ baseUrl: import.meta.env.VITE_LIVE_LINK }),
   tagTypes: ["USER"],
   endpoints: (builder) => ({
     register: builder.mutation<any, RegisterPayload>({
@@ -24,14 +24,14 @@ export const authApi = createApi({
         method: "POST",
         data: credentials,
       }),
-      invalidatesTags: ["USER"]
+      
     }),
     logout: builder.mutation({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
-
       }),
+      invalidatesTags: ["USER"]
     }),
 
     userInfo: builder.query<any, void>({

@@ -51,7 +51,7 @@ export default function CashInForm() {
   return (
     <div className="px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-6">
-        <h2 className="text-2xl font-semibold text-center">Send Money</h2>
+        <h2 className="text-2xl font-semibold text-center">Cash In</h2>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -63,9 +63,9 @@ export default function CashInForm() {
               name="to"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Reciever Username</FormLabel>
+                  <FormLabel>Reciever ID</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter username" {...field} />
+                    <Input placeholder="Enter ID" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

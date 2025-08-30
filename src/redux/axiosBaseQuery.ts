@@ -15,6 +15,7 @@ interface AxiosQueryArgs {
   headers?: AxiosRequestConfig["headers"];
 }
 
+
 const axiosBaseQuery =
   ({ baseUrl = "" }: AxiosBaseQueryArgs = {}): BaseQueryFn<
     AxiosQueryArgs,
