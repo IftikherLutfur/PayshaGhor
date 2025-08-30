@@ -5,12 +5,17 @@ import { useLogoutMutation, useUserInfoQuery } from "@/redux/features/authentica
 import { useState } from "react";
 
 export function Navbar() {
-  const { data: userInfo } = useUserInfoQuery(undefined);
+  const { data: userInfo} = useUserInfoQuery(undefined);
   const [logout] = useLogoutMutation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout =async () => {
-    await logout(undefined).unwrap();
+     try {
+    await logout(undefined).unwrap(); // call logout mutation
+    // No need to manually refetch — RTK Query will automatically update any query tagged with "USER"
+  } catch (error) {
+    console.error("Logout failed", error);
+  }
   };
 
   return (

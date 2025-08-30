@@ -23,9 +23,7 @@ const AgentActionPage = () => {
                   <div className="bg-white rounded-2xl shadow-md p-6">
                     <CashOutForm/>
                   </div>
-                  <div className="bg-white rounded-2xl shadow-md p-6">
-                    
-                  </div>
+                
                 </div>
               </div>
             </div>

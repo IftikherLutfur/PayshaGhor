@@ -24,14 +24,14 @@ export const authApi = createApi({
         method: "POST",
         data: credentials,
       }),
-      
+
     }),
     logout: builder.mutation({
       query: () => ({
         url: "/auth/logout",
         method: "POST",
       }),
-      invalidatesTags: ["USER"]
+      invalidatesTags: ["USER"], // this will trigger useUserInfoQuery to refetch
     }),
 
     userInfo: builder.query<any, void>({
@@ -64,7 +64,7 @@ export const authApi = createApi({
     }),
 
     userStatus: builder.mutation({
-      query: ({ userId,userStatus }) => ({
+      query: ({ userId, userStatus }) => ({
         url: `/user/userStatus/${userId}`,
         method: "PATCH",
         data: { userStatus },  // ✅ must match backend

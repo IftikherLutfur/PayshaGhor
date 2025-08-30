@@ -7,7 +7,7 @@ import {
 } from "@/redux/features/authentication/auth.api"
 
 export default function AllUsers() {
-  const { data, isLoading } = useGetAllUserQuery(undefined)
+  const { data, isLoading, refetch } = useGetAllUserQuery(undefined)
   const [userStatus] = useUserStatusMutation()
 
 const onlyUser = data?.data.filter((user:any)=>user.role === "USER")
@@ -20,6 +20,7 @@ const handleStatusChange = async(userId: string, currentStatus: string) =>{
     const newStatus = currentStatus === "ACTIVE" ? "BLOCK": "ACTIVE"
     try {
       await userStatus({userId, userStatus: newStatus}).unwrap()
+      refetch()
       console.log("User status changed successfully:", userId);
     } catch (error) {
       console.log("Failed to change user status", error)

@@ -1,6 +1,7 @@
 import Marquee from "react-fast-marquee";
 import FourCard from "./Features/FourCards";
 import Banner from "./Features/Banner";
+import RandomSection from "./Features/RandomSection";
 
 const HomeHero = () => {
 
@@ -30,6 +31,8 @@ const HomeHero = () => {
           </div>
         </div>
       </div>
+
+      <RandomSection/>
       
     </div>
   );

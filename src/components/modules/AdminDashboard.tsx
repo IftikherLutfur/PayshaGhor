@@ -18,6 +18,7 @@ const items = [
   { title: "Overview", url: "adminOverview", icon: Settings },
   { title: "All Agents", url: "all-agents", icon: Settings },
   { title: "All Users", url: "all-users", icon: Settings },
+  { title: "All Wallets", url: "all-wallets", icon: Settings },
   { title: "All Transactions", url: "all-transactions", icon: Settings },
   { title: "Edit Profile", url: "edit-profile", icon: Settings },
 ]

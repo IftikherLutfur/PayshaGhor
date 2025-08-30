@@ -9,6 +9,13 @@ export const walletApi = createApi({
   baseQuery: axiosBaseQuery({ baseUrl: import.meta.env.VITE_LIVE_LINK }),
   endpoints: (builder) => ({
 
+    getAllWallet: builder.query({
+      query: () => ({
+        url: "/wallet",
+        method: "GET",
+      }),
+    }),
+
     getWallet: builder.query({
       query: (userId: string) => ({
         url: `/wallet/${userId}`,
@@ -39,7 +46,7 @@ export const walletApi = createApi({
         data: transaction
       }),
     }),
-    
+
     getOwnTransaction: builder.query({
       query: (id: string) => ({
         url: `/wallet/transaction/${id}`,
@@ -62,17 +69,26 @@ export const walletApi = createApi({
         data: cashInInfo
       }),
     }),
-    
+
+    changeWalletStatus: builder.mutation({
+      query: ({ walletId, walletStatus }) => ({
+        url: `/wallet/changeStatus/${walletId}`,
+        method: "PATCH",
+        data: { walletStatus }, // ✅ send correct field
+      }),
+    }),
 
   }),
 });
 
-export const { 
-  useGetWalletQuery, 
-  useSendMoneyMutation, 
-  usePopupMutation, 
+export const {
+  useGetWalletQuery,
+  useSendMoneyMutation,
+  usePopupMutation,
   useWithdrawMutation,
   useGetOwnTransactionQuery,
   useCashinMutation,
-  useCashoutMutation
- } = walletApi;
+  useCashoutMutation,
+  useGetAllWalletQuery,
+  useChangeWalletStatusMutation
+} = walletApi;

@@ -17,7 +17,7 @@ import { useUserInfoQuery } from "@/redux/features/authentication/auth.api"
 
 const items = [
   { title: "Home", url: "/", icon: Home },
-  { title: "Cashin", url: "agentAction", icon: Settings },
+  { title: "Cash In & Out", url: "agentAction", icon: Settings },
   { title: "Transaction History", url: "transactions", icon: Settings },
   { title: "Edit Profile", url: "edit-profile", icon: Settings },
 ]
