@@ -7,7 +7,7 @@ It provides a seamless and secure platform for users, agents, and admins to mana
 `{email: ifti@gmail.com | password: Ifti677#$%}`
 
 ### Agent account: 
-`{email: agent1@gmail.com | password: Agent33@!}`
+`{email: agent@gmail.com | password: Agent33@!}`
 
 ### User account : 
 `{email: User3@gmai.com | password: User33@!}`
