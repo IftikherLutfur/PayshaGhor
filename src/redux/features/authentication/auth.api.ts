@@ -79,6 +79,16 @@ export const authApi = createApi({
         }
       }
     }),
+
+    getAgentUser: builder.query({
+      query: () => {
+        return {
+          url: "/user/userAndAgent",
+          method: "GET"
+        }
+      }
+    }),
+
     getAllTransaction: builder.query({
       query: () => {
         return {
@@ -92,5 +102,5 @@ export const authApi = createApi({
 });
 
 export const { useRegisterMutation, useLoginMutation, useUserInfoQuery, useLogoutMutation, useEditUserMutation, useGetAllUserQuery, useApproveAgentMutation,
-  useGetAllTransactionQuery, useUserStatusMutation
+  useGetAllTransactionQuery, useUserStatusMutation, useGetAgentUserQuery
 } = authApi;

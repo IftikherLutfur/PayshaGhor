@@ -48,7 +48,7 @@ export const Contact = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+              />
             <FormField
               control={form.control}
               name="email"

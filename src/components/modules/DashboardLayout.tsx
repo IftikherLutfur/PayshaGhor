@@ -16,7 +16,7 @@ import { useGetWalletQuery } from "@/redux/features/wallet/wallet.api"
 import { useUserInfoQuery } from "@/redux/features/authentication/auth.api"
 
 const items = [
-  { title: "Home", url: "/", icon: Home },
+  { title: "Home", url: "/Home", icon: Home },
   { title: "User Operation", url: "userOperation", icon: Settings },
   { title: "Transaction History", url: "transactions", icon: Settings },
   { title: "Edit Profile", url: "edit-profile", icon: Settings },

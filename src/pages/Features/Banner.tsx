@@ -1,51 +1,56 @@
+import { useUserInfoQuery } from "@/redux/features/authentication/auth.api";
+import { useGetWalletQuery } from "@/redux/features/wallet/wallet.api";
+import sendMoney from "../../assets/images/il_send_money.svg";
+
 export default function Banner() {
+  const { data: userInfo } = useUserInfoQuery(undefined);
+  
+  const { data: wallet } = useGetWalletQuery(userInfo?.data?._id);
+
   return (
-    <div className="relative bg-gray-50">
-      {/* Top Spacing */}
-      <div className="py-20">
-        {/* Heading */}
-        <div className="text-center mb-6">
-          <h1 className="uppercase text-5xl font-bold">
-            send, spend
-            <br />
-            anywhere
-          </h1>
+    <div className="bg-gradient-to-b mt-4 from-blue-600 to-blue-400 rounded-3xl p-6 sm:p-8 shadow-xl max-w-6xl mx-auto">
+
+      {/* User Info and Card */}
+      <div className="flex md:flex-row justify-between items-start md:items-center gap-6 mb-6">
+        {/* User Details */}
+        <div className="text-white space-y-1">
+          <p className="font-semibold text-lg sm:text-xl text-start">{userInfo?.data?.name}</p>
+          <p className="font-medium text-md sm:text-lg text-start">{userInfo?.data?.phone}</p>
         </div>
 
-        {/* Subtitle */}
-        <div className="max-w-2xl mx-auto">
-          <p className="text-center text-gray-600">
-           Experience seamless payments with PoyshaGhor Wallet — your all-in-one solution for sending money, managing expenses, and staying in control of your finances anytime, anywhere. Enjoy instant transactions, top-notch security, With PoyshaGhor, money management is effortless, reliable, and always at your fingertips.
-          </p>
-        </div>
-
-        {/* Cards Section */}
-        <div className="flex justify-center items-center gap-6 my-16 ">
-          {/* Left Card */}
-          <img
-            src="https://res.cloudinary.com/dgisrhgoe/image/upload/v1756458232/Background_-_2025-08-29T150230.385_bnudbk.png"
-            alt="card-1"
-            className="w-40 sm:w-52 md:w-60 rounded-xl shadow-lg transform -rotate-12"
-          />
-
-          {/* Middle Card */}
-          <img
-            src="https://res.cloudinary.com/dgisrhgoe/image/upload/v1756458234/Background_-_2025-08-29T150150.432_gdxh5r.png"
-            alt="card-2"
-            className="w-44 sm:w-56 md:w-64 rounded-xl shadow-xl transform translate-y-4 z-10"
-          />
-
-          {/* Right Card */}
-          <img
-            src="https://res.cloudinary.com/dgisrhgoe/image/upload/v1756458232/Background_-_2025-08-29T150230.385_bnudbk.png"
-            alt="card-3"
-            className="w-40 sm:w-52 md:w-60 rounded-xl shadow-lg transform rotate-12"
-          />
+        {/* Card Info */}
+        <div className="text-amber-200 text-right">
+          <p className="text-2xl sm:text-3xl font-semibold">PAYSHAGHOR</p>
+          <p className="text-2xl sm:text-3xl font-bold tracking-widest">***********</p>
         </div>
       </div>
 
-      {/* Bottom White Cut */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-white"></div>
+      {/* Balance */}
+      <div className="text-white mb-6">
+        <p className="text-lg sm:text-xl font-semibold">Your Balance</p>
+        <h1 className="text-3xl sm:text-4xl font-bold">৳ {wallet?.data?.balance}</h1>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center gap-4 bg-white/90 p-2 rounded-3xl shadow-md flex-wrap">
+          {["Send", "Pop up", "Withdraw"].map((action) => (
+            <button
+              key={action}
+              className="flex flex-col items-center sm:p-5 transition-transform transform hover:scale-105 w-24 sm:w-28"
+            >
+              <img
+                src={sendMoney}
+                alt={`${action} Icon`}
+                className="w-14  bg-blue-300 rounded-full p-2 mb-1"
+              />
+              <span className=" font-semibold text-sm sm:text-base text-blue-500">{action}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+
     </div>
   );
 }

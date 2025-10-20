@@ -53,8 +53,8 @@ export function RegisterForm() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-8 bg-white shadow-lg rounded-2xl">
-      <h2 className="text-2xl font-bold mb-6 text-center">Create an Account</h2>
+    <div className="py-14 px-8 bg-white shadow-lg rounded-2xl">
+      <h2 className="text-3xl font-bold mb-6 text-center">Create an Account</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Email */}
@@ -116,6 +116,7 @@ export function RegisterForm() {
           </Button>
         </form>
       </Form>
+           <p className="text-sm font-semibold mt-5  text-black">If you have an account <a  className="underline" href="login">Login</a></p>
     </div>
   )
 }

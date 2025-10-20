@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -13,6 +14,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useLoginMutation } from "@/redux/features/authentication/auth.api";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -34,16 +36,18 @@ export const LoginForm = () => {
     try {
       const response = await login(values).unwrap();
       if (response.success) {
-        navigate("/");
+        toast.success("Login successfull")
+        navigate("/Home");
       }
       console.log(response);
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error?.data?.message)
+      console.error(error?.data?.message);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-16 p-8 bg-white shadow-lg rounded-2xl">
+    <div className="max-w-md mx-auto mt-16 py-14 px-8 bg-white shadow-lg rounded-2xl">
       <h2 className="text-2xl font-bold mb-6 text-center">Login to Your Account</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -83,6 +87,8 @@ export const LoginForm = () => {
           </Button>
         </form>
       </Form>
+      <p className="text-sm font-semibold mt-5  text-black">If you don't have account <a className="underline" href="register">Register</a></p>
+
     </div>
   );
 };

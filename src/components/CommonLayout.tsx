@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { Navbar } from "./Shared/Navbar";
-import Footer from "./Shared/Footer";
-
+    
 interface IProps {
     children: ReactNode
 }
@@ -12,7 +11,6 @@ export default function CommonLayout({ children }: IProps) {
             <main className="grow-1">
                 {children}
             </main>
-            <Footer />
         </div>
     )
 }
