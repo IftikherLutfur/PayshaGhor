@@ -17,6 +17,8 @@ import { useGetWalletQuery, useSendMoneyMutation } from "@/redux/features/wallet
 import { toast } from "sonner"
 import { useGetAgentUserQuery, useUserInfoQuery } from "@/redux/features/authentication/auth.api"
 import { useState } from "react"
+import { Home } from "lucide-react"
+import { Link } from "react-router"
 
 const formSchema = z.object({
   to: z.string().min(2, "At least 2 characters required").max(50),
@@ -30,11 +32,11 @@ export default function SendMoneyForm() {
   const { data: wallet } = useGetWalletQuery(selfProfile?.data?._id)
   const [showForm, setShowForm] = useState(false)
   const [successMessage, setSuccessMessage] = useState(false)
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   const [selectedUser, setSelectedUser] = useState<string | null>(null)
 
   const removeSelfProfile = userInfo?.data?.filter((user: any) => user._id !== selfProfile?.data?._id);
-
+  const allUser = removeSelfProfile?.filter((user: any) => user.role === "USER");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -73,7 +75,7 @@ export default function SendMoneyForm() {
         <input
           className="border-2 p-2 w-2/3 sm:w-1/2 rounded-l-lg"
           type="text"
-          placeholder="Search user..."
+          placeholder="Search by number(_upcoming feature_)"
         />
         <button className="bg-blue-600 text-white rounded-r-lg p-3 font-bold cursor-pointer">
           Search
@@ -84,21 +86,28 @@ export default function SendMoneyForm() {
 
 
       <div className="my-10 grid gap-4">
-        <div className="flex items-center gap-4 bg-blue-100 rounded-xl shadow-md w-max">
-          <input
-            type="text"
-            value={wallet?.data?.balance?.toLocaleString()}
-            readOnly
-            className="absolute text-blue-900 font-semibold text-lg bg-transparent border-none w-32 text-right focus:outline-none"
-          />
-          <button
-            onClick={() => setShow(!show)}
-            className={show ? "text-sm relative px-3 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition-transform duration-1000 ease-in-out" : "text-sm relative px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition translate-x-40 duration-1000"}
-          >
-            {show ? "Tapto see your balance" : "Tap to hide your balance"}
-          </button>
+
+        <div className="flex items-center justify-between mx-10 my-10">
+          <div className="flex items-center gap-4 bg-blue-100 rounded-xl shadow-md w-max">
+            <input
+              type="text"
+              value={wallet?.data?.balance?.toLocaleString()}
+              readOnly
+              className="absolute text-blue-900 font-semibold text-lg bg-transparent border-none w-32 text-right focus:outline-none"
+            />
+            <button
+              onClick={() => setShow(!show)}
+              className={show ? "text-sm relative px-3 py-2 rounded-md bg-green-600 text-white hover:bg-green-700 transition-transform duration-1000 ease-in-out" : "text-sm relative px-3 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition translate-x-40 duration-1000"}
+            >
+              {show ? "Tapto see your balance" : "Tap to hide your balance"}
+            </button>
+          </div>
+          <div>
+            <Link to="/home"><Home /></Link>
+          </div>
         </div>
-        {removeSelfProfile?.map((user: any) => (
+
+        {allUser?.map((user: any) => (
           <div
             key={user._id}
             className="flex flex-col sm:flex-row justify-between items-center gap-4 p-4 bg-blue-100 rounded-xl shadow"
@@ -133,13 +142,13 @@ export default function SendMoneyForm() {
               type="button"
               variant="outline"
               onClick={() => setShowForm(false)}
-              className="absolute right-3 top-3 rounded-full w-8 h-8 text-lg"
+              className="absolute right-3 top-3 rounded-full w-8 h-8 text-lg bg-red-500 text-white hover:bg-red-600 hover:text-white"
             >
               ✕
             </Button>
 
             <h3 className="text-xl font-semibold text-center mb-2">
-              Send Money to{" "}
+              Send Money to{" "} <br />
               <span className="text-blue-600 break-all">{selectedUser}</span>
             </h3>
 

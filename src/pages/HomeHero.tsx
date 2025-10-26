@@ -5,11 +5,13 @@ import RandomSection from "./Features/RandomSection";
 import { useLogoutMutation, useUserInfoQuery } from "@/redux/features/authentication/auth.api";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
+import AgentMenu from "./Features/AgentMenu";
 
 const HomeHero = () => {
 
   const { data: userInfo } = useUserInfoQuery(undefined);
   const [logout] = useLogoutMutation();
+  console.log(userInfo)
 
   const hour = new Date().getHours()
   let greetings = ""
@@ -66,8 +68,9 @@ const HomeHero = () => {
       </div>
 
       <Banner />
-      <FourCard />
-
+     {userInfo?.data?.role === "USER" && <FourCard />}
+     {userInfo?.data?.role === "AGENT" && <AgentMenu />}
+     
       {/* Cashback Marquee */}
       <div className="mt-5 rounded-md p-6 bg-[#4B8A6B] text-gray-50">
         <div className="container mx-auto">

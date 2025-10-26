@@ -1,5 +1,6 @@
 import App from "@/App";
 import { RootLayout } from "@/components/Layout/RootLayout";
+import CashOutForm from "@/components/modules/AgentDashboard/CashoutForm";
 import SendMoneyForm from "@/components/modules/userDashboard/SendMoneyFrom";
 import userProfile from "@/components/modules/userDashboard/Users/userProfile";
 import About from "@/pages/AboutPage";
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         Component: SendMoneyForm,
         path:"/sendMoney"
+      },
+      {
+        Component: CashOutForm,
+        path:"/cashout"
       }
     ]
   },
