@@ -1,4 +1,4 @@
-# 💸 PoyshaGhor – A Digital Wallet & Smart Financial Solution
+# 💸 PayshaGhor – A Digital Wallet & Smart Financial Solution
 
 PoyshaGhor is a secure and user-friendly digital wallet system where users can send money, cash out using agents, recharge mobile numbers, and manage finances efficiently. The platform defines **three role-based dashboards**: Admin, Agent, and User — each with dedicated functionalities.
 
