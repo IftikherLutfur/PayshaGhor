@@ -52,8 +52,10 @@ export default function PopupForm() {
   }
 
   return (
-    <div className="px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-6">
+    <div className="px-4 py-20">
+      <div className="w-full max-w-md mx-auto my-auto bg-white rounded-lg shadow-md p-6 sm:p-8 space-y-6
+      border-2 border-amber-200
+      ">
         <h2 className="text-2xl font-semibold text-center">Popup Money</h2>
 
         <Form {...form}>
@@ -80,7 +82,7 @@ export default function PopupForm() {
             />
 
             {/* Submit Button */}
-            <Button type="submit" className="w-full mt-2">
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-600 mt-2">
               Send
             </Button>
           </form>

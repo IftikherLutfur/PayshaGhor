@@ -1,108 +1,109 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useUserInfoQuery } from "@/redux/features/authentication/auth.api";
-import {
-  useGetWalletQuery,
-} from "@/redux/features/wallet/wallet.api";
-import { useState } from "react";
-import SendMoneyForm from "../SendMoneyFrom";
-import WithdrawForm from "../withdrawForm";
-import PopupForm from "../PopupForm";
+import { useGetWalletQuery } from "@/redux/features/wallet/wallet.api";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import TransactionHistory from "@/pages/UserDashboardPage.tsx/TransactionPage";
+import AgentProfile from "@/pages/AgentProfile/AgentProfile";
+
 
 const UserProfile = () => {
   const { data: userInfo } = useUserInfoQuery(undefined);
   const userId = userInfo?.data?._id;
-  const [sendPopup, setSendPopup] = useState(false);
-  const [cashPopup, setCashPopup] = useState(false);
-  const [withdrawPopup, setWithdrawPopup] = useState(false);
-  const [transactionPageOpen, setTransactionPageOpen] = useState(false);
 
-  const { data: wallet } = useGetWalletQuery(userId);
+  const { data: wallet } = useGetWalletQuery(userId, {
+    skip: !userId, // ✅ Prevent unnecessary API call until userId exists
+  });
 
-  const handleForSendMoney = () => setSendPopup(true);
-  const handleForCashIn = () => setCashPopup(true);
-  const handleForWithdraw = () => setWithdrawPopup(true);
-  const handleForTransaction = () => setTransactionPageOpen(true);
-
-  const handleForCross = () => {
-    setSendPopup(false);
-    setCashPopup(false);
-    setWithdrawPopup(false);
-    setTransactionPageOpen(false);
-  };
+  // ✅ Popup state
+ 
 
   return (
-    <div className="py-20 min-h-screen bg-gray-200 relative">
-      <div>
-        {/* Profile Section */}
-        <div className="flex justify-center">
-          <img
-            src={userInfo?.data?.profilePhoto}
-            alt="User profile photo"
-            className="w-36 h-36 rounded-full border-4 border-amber-400 shadow-md"
-          />
-        </div>
-
-        <h1 className="text-center text-2xl font-bold mt-4">
-          {userInfo?.data?.name}
-        </h1>
-        <h2 className="text-center text-lg font-medium text-gray-600">
-          {userInfo?.data?.phone}
-        </h2>
-        <h3 className="text-center text-xl font-semibold mt-2">
-          Balance: {wallet?.data?.balance ?? "0"} BDT
-        </h3>
-
-        {/* Action Buttons */}
-        <div className="mx-auto w-11/12 sm:w-2/3 lg:w-1/3 mt-6 space-y-3">
-          <button
-            onClick={handleForSendMoney}
-            className="bg-blue-600 hover:bg-blue-700 transition text-white w-full py-2 px-4 font-semibold flex justify-between items-center text-lg rounded-md shadow"
-          >
-            SEND MONEY {"->"}
-          </button>
-
-          <button
-            onClick={handleForCashIn}
-            className="bg-blue-600 hover:bg-blue-700 transition text-white w-full py-2 px-4 font-semibold flex justify-between items-center text-lg rounded-md shadow"
-          >
-            CASH-IN {"->"}
-          </button>
-
-          <button
-            onClick={handleForWithdraw}
-            className="bg-blue-600 hover:bg-blue-700 transition text-white w-full py-2 px-4 font-semibold flex justify-between items-center text-lg rounded-md shadow"
-          >
-            WITHDRAW {"->"}
-          </button>
-
-          <button
-            onClick={handleForTransaction}
-            className="bg-blue-600 hover:bg-blue-700 transition text-white w-full py-2 px-4 font-semibold flex justify-between items-center text-lg rounded-md shadow"
-          >
-            TRANSACTION HISTORY {"->"}
-          </button>
-        </div>
-      </div>
-
-      {/* POPUPS (Centered + Overlay) */}
-      {(sendPopup || cashPopup || withdrawPopup || transactionPageOpen) && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="backdrop-blur-2xl rounded-2xl p-6 shadow-xl w-[90%] sm:w-[500px] relative">
-            <button
-              onClick={handleForCross}
-              className="absolute top-2 right-3 text-2xl font-bold text-gray-600 hover:text-red-600"
-            >
-              ×
-            </button>
-
-            {sendPopup && <SendMoneyForm />}
-            {cashPopup && <PopupForm />}
-            {withdrawPopup && <WithdrawForm />}
-            {transactionPageOpen && <TransactionHistory />}
-          </div>
-        </div>
-      )}
+    <div className="py-20  bg-gray-200 relative">
+      {userInfo?.data?.role === "USER" &&  <div className="max-w-md mx-auto px-4 py-6">
+      
+            {/* ✅ Profile Section */}
+            <div className="flex flex-col justify-center items-center text-center gap-3">
+              <img
+                src={userInfo?.data?.profilePhoto || "/default-avatar.png"}
+                alt="User profile"
+                className="w-40 h-40 rounded-full border-4 border-amber-500 shadow-md object-cover"
+              />
+      
+              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800">
+                {userInfo?.data?.name}
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 font-medium">
+                📞 {userInfo?.data?.phone}
+              </p>
+            </div>
+      
+            {/* ✅ Tabs */}
+            <Tabs className="mt-8">
+              <TabList className="flex justify-center gap-4 bg-gray-800 text-white py-3 rounded-lg shadow-md">
+                <Tab className="px-5 py-2 rounded-md font-bold text-lg hover:bg-amber-600 cursor-pointer">
+                  Wallet
+                </Tab>
+                <Tab className="px-5 py-2 rounded-md font-bold text-lg hover:bg-amber-600 cursor-pointer">
+                  Transaction History
+                </Tab>
+              </TabList>
+      
+              {/* ✅ Wallet Details */}
+              <TabPanel>
+                <div className="border-2 border-amber-500 rounded-lg p-6 mt-8 bg-white shadow-md">
+      
+                  <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    💰 Wallet Details
+                  </h2>
+      
+                  <div className="space-y-4 text-left">
+                    <p className="text-xl font-semibold text-gray-700">
+                      Balance:
+                      <span className="font-bold text-amber-600">
+                        {" "} {wallet?.data?.balance} BDT
+                      </span>
+                    </p>
+      
+      
+                    <p className="text-xl font-semibold text-gray-700">
+                      Wallet Status:
+                      <span className="font-bold text-blue-600">
+                        {" "} {wallet?.data?.walletStatus}
+                      </span>
+                    </p>
+      
+                    <p className="text-xl font-semibold text-gray-700">
+                      Wallet Type:
+                      <span className="font-bold text-purple-600">
+                        {" "} {wallet?.data?.walletType}
+                      </span>
+                    </p>
+      
+                    <p className="text-xl font-semibold text-gray-700">
+                      User Status:
+                      <span className="font-bold text-orange-600">
+                        {" "} {userInfo?.data?.userStatus}
+                      </span>
+                    </p>
+      
+                    <p className="text-xl font-semibold text-gray-700">
+                      Phone:
+                      <span className="font-bold">
+                        {" "} {userInfo?.data?.phone}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </TabPanel>
+      
+              <TabPanel>
+                <div className="mt-8">
+                  <TransactionHistory />
+                </div>
+              </TabPanel>
+            </Tabs>
+          </div>}
+      {userInfo?.data?.role === "AGENT" && <AgentProfile />}
     </div>
   );
 };

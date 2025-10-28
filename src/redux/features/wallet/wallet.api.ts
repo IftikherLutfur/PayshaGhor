@@ -70,6 +70,14 @@ export const walletApi = createApi({
       }),
     }),
 
+    mobileRecharge: builder.mutation({
+      query: (mobileRecharge) => ({
+        url:"/wallet/recharge",
+        method:"POST",
+        data: mobileRecharge
+      })
+    }),
+
     changeWalletStatus: builder.mutation({
       query: ({ walletId, walletStatus }) => ({
         url: `/wallet/changeStatus/${walletId}`,
@@ -90,5 +98,6 @@ export const {
   useCashinMutation,
   useCashoutMutation,
   useGetAllWalletQuery,
-  useChangeWalletStatusMutation
+  useChangeWalletStatusMutation,
+  useMobileRechargeMutation
 } = walletApi;

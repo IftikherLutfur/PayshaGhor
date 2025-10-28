@@ -39,7 +39,8 @@ const HomeHero = () => {
 
       <div className="flex justify-between max-w-6xl mx-auto">
         <div className="flex items-center gap-5">
-          <img className="w-[74px] h-[74px] rounded-full border-2 border-amber-300" src={userInfo?.data?.profilePhoto} alt="" />
+          {userInfo?.data?.profilePhoto && <img className="w-[74px] h-[74px] rounded-full border-2 border-amber-300" src={userInfo?.data?.profilePhoto} alt="" />}
+
 
           <p className="text-2xl">
             <p className="text-xl text-start">
@@ -68,9 +69,9 @@ const HomeHero = () => {
       </div>
 
       <Banner />
-     {userInfo?.data?.role === "USER" && <FourCard />}
-     {userInfo?.data?.role === "AGENT" && <AgentMenu />}
-     
+      {userInfo?.data?.role === "USER" && <FourCard />}
+      {userInfo?.data?.role === "AGENT" && <AgentMenu />}
+
       {/* Cashback Marquee */}
       <div className="mt-5 rounded-md p-6 bg-[#4B8A6B] text-gray-50">
         <div className="container mx-auto">

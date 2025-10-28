@@ -1,6 +1,9 @@
 import App from "@/App";
 import { RootLayout } from "@/components/Layout/RootLayout";
+import CashInForm from "@/components/modules/AgentDashboard/CashinForm";
 import CashOutForm from "@/components/modules/AgentDashboard/CashoutForm";
+import MobileRecharge from "@/components/modules/AgentDashboard/MobileRecharge";
+import PopupForm from "@/components/modules/userDashboard/PopupForm";
 import SendMoneyForm from "@/components/modules/userDashboard/SendMoneyFrom";
 import userProfile from "@/components/modules/userDashboard/Users/userProfile";
 import About from "@/pages/AboutPage";
@@ -58,12 +61,24 @@ export const router = createBrowserRouter([
       },
       {
         Component: SendMoneyForm,
-        path:"/sendMoney"
+        path: "/sendMoney"
       },
       {
         Component: CashOutForm,
-        path:"/cashout"
-      }
+        path: "/cashout"
+      },
+      {
+        Component: PopupForm,
+        path: "/popup"
+      },
+      {
+        Component: CashInForm,
+        path: "/cashIn"
+      },
+      {
+        Component: MobileRecharge,
+        path: "/recharge"
+      },
     ]
   },
 

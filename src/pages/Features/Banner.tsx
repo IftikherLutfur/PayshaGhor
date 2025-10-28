@@ -4,7 +4,7 @@ import sendMoney from "../../assets/images/il_send_money.svg";
 
 export default function Banner() {
   const { data: userInfo } = useUserInfoQuery(undefined);
-  
+
   const { data: wallet } = useGetWalletQuery(userInfo?.data?._id);
 
   return (
@@ -26,11 +26,13 @@ export default function Banner() {
       </div>
 
       {/* Balance */}
-      <div className="text-white mb-6">
-        <p className="text-lg sm:text-xl font-semibold">Your Balance</p>
-        <h1 className="text-3xl sm:text-4xl font-bold">৳ {wallet?.data?.balance}</h1>
-      </div>
+      {wallet?.data?.balance &&
+        <div className="text-white mb-6">
+          <p className="text-lg sm:text-xl font-semibold">Your Balance</p>
+          <h1 className="text-3xl sm:text-4xl font-bold">৳ {wallet?.data?.balance}</h1>
 
+        </div>
+      }
       {/* Action Buttons */}
       <div className="flex justify-center items-center">
         <div className="flex justify-center items-center gap-4 bg-white/90 p-2 rounded-3xl shadow-md flex-wrap">

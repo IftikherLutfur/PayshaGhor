@@ -11,7 +11,7 @@ export default function AgentMenu() {
         {/* Card 1 */}
        
         
-       <Link to={""}>
+       <Link to={"/cashIn"}>
         <div className="flex flex-col items-center text-center p-4 x rounded-2xl  transition-shadow duration-300">
           <img
             className="mb-3 h-20 w-20 sm:h-24 sm:w-24 bg-amber-200 rounded-full p-3 object-cover"
@@ -21,7 +21,7 @@ export default function AgentMenu() {
           <h3 className="font-bold text-lg sm:text-xl text-gray-800">Cashin</h3>
         </div>
        </Link>
-       <Link to={""}>
+       <Link to={"/recharge"}>
         <div className="flex flex-col items-center text-center p-4 x rounded-2xl  transition-shadow duration-300">
           <img
             className="mb-3 h-20 w-20 sm:h-24 sm:w-24 bg-amber-200 rounded-full p-3 object-cover"

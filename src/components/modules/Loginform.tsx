@@ -15,6 +15,9 @@ import { Button } from "../ui/button";
 import { useLoginMutation } from "@/redux/features/authentication/auth.api";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -23,6 +26,7 @@ const formSchema = z.object({
 
 export const LoginForm = () => {
   const [login] = useLoginMutation();
+  const [show, setShow] = useState(false)
   const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,6 +49,8 @@ export const LoginForm = () => {
       console.error(error?.data?.message);
     }
   };
+
+
 
   return (
     <div className="max-w-md mx-auto mt-16 py-14 px-8 bg-white shadow-lg rounded-2xl">
@@ -73,13 +79,23 @@ export const LoginForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input type="password" placeholder="Enter your password" {...field} />
+               <div className="relative">
+                 <FormControl>
+                  <Input type={show ? "text" : "password"} placeholder="Enter your password" {...field} />
                 </FormControl>
+        <span
+          onClick={() => setShow(!show)}
+          className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl"
+        >
+          {show ? <FaEye /> : <FaEyeSlash />}
+        </span>
+               </div>
                 <FormMessage />
               </FormItem>
             )}
           />
+
+          
 
           {/* Submit Button */}
           <Button type="submit" className="w-full py-3 text-lg font-semibold">

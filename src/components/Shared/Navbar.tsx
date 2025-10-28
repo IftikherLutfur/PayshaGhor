@@ -23,7 +23,7 @@ export function Navbar() {
             </li>
             <li>
               <Link to="/about" className="hover:text-yellow-400 transition-colors text-lg">
-                Statistics
+                About Us
               </Link>
             </li>
      <li>
@@ -33,16 +33,21 @@ export function Navbar() {
      </li>
             <li>
               <Link to="/contact" className="hover:text-yellow-400 transition-colors text-lg">
-                My Card
+                Contact Us
               </Link>
             </li>
-            {userInfo?.data?.email && (
+            {userInfo?.data?.role === "ADMIN" ? (
               <li>
+                <Link to="Dashboard/adminOverview" className="hover:text-yellow-400 transition-colors text-lg">
+                  Dashboard
+                </Link>
+              </li>): 
+             (<li>
                 <Link to="/my-profile" className="hover:text-yellow-400 transition-colors text-lg">
                   Profile
                 </Link>
-              </li>
-            )}
+              </li>)
+            }
           </ul>
         </nav>
 

@@ -14,7 +14,7 @@ import { Link } from "react-router"
 
 
 const items = [
-  { title: "Home", url: "/", icon: Home },
+  { title: "Home", url: "/home", icon: Home },
   { title: "Overview", url: "adminOverview", icon: Settings },
   { title: "All Agents", url: "all-agents", icon: Settings },
   { title: "All Users", url: "all-users", icon: Settings },
@@ -28,8 +28,6 @@ export function DashboardForAdmin() {
   return (
     <Sidebar className="border-r bg-white shadow-md">
       {/* Header with balance */}
-    
-
       {/* Sidebar Menu */}
       <SidebarContent>
         <SidebarGroup>

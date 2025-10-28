@@ -32,7 +32,7 @@ export default function WithdrawForm() {
   console.log(userInfo, "Hello")
   const { data: selfProfile } = useUserInfoQuery(undefined)
   const { data: wallet } = useGetWalletQuery(selfProfile?.data?._id)
-  const [showForm, setShowForm] = useState(false)
+  const [, setShowForm] = useState(false)
     const [selectedUser, setSelectedUser] = useState<string | null>(null)
   
   const [show, setShow] = useState(false)

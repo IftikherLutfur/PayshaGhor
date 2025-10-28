@@ -130,7 +130,7 @@ export default function CashOutForm() {
       {/* Popup Form */}
       {showForm && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-sm relative shadow-xl">
+          <div className="bg-white rounded-lg max-w-4xl p-6 w-full relative shadow-xl">
             <Button
               className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-3"
               onClick={() => setShowForm(false)}
@@ -138,7 +138,7 @@ export default function CashOutForm() {
               ✕
             </Button>
 
-            <h3 className="text-xl font-semibold text-center mb-3">
+            <h3 className="text-xl font-semibold text-center my-3">
               Cashout to: <span className="text-blue-600">{selectedAgent}</span>
             </h3>
 

@@ -79,6 +79,7 @@ export default function TransactionHistory() {
                                 WITHDRAW: { label: "Withdraw", color: "text-red-600" },
                                 SENDMONEY: { label: "Send Money", color: "text-blue-600" },
                                 POPUP: { label: "Popup", color: "text-green-600" },
+                                MOBILE_RECHARGE: { label: "Mobile Recharge", color: "text-purple-600" },
                               };
 
                               const txnType = typeMap[typeKey] || { label: "Undefined", color: "text-gray-500" };

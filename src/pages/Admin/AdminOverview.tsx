@@ -20,7 +20,7 @@ export default function AdminOverview() {
     .reduce((a: number, b: number) => a + b, 0) || 0
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50">
       <h1 className="text-3xl font-bold mb-4 text-center">Admin Overview</h1>
       <p className="text-center text-gray-600 mb-6">
         This is the overview page for admin users.

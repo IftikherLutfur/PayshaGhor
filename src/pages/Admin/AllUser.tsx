@@ -28,7 +28,7 @@ const handleStatusChange = async(userId: string, currentStatus: string) =>{
     console.log("Change status for user:", userId);
   }
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50">
       <h1 className="text-2xl font-bold text-center mb-6">All Agents</h1>
 
       <div className="overflow-x-auto shadow-md rounded-lg bg-white">

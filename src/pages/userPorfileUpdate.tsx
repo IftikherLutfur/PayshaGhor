@@ -57,7 +57,7 @@ export default function UserProfileUpdate() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white shadow-lg rounded-2xl">
+    <div className="w-full max-w-7xl mt-8 p-6 bg-white shadow-lg rounded-2xl">
       <h2 className="text-xl font-semibold mb-4">Update Profile</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
