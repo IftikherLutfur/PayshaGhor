@@ -1,81 +1,84 @@
-# 💰 Paysha Ghor
+# 💸 PoyshaGhor – A Digital Wallet & Smart Financial Solution
 
-Paysha Ghor is a Digital Wallet Web Application inspired by Bkash, Nagad, and Rocket.
-It provides a seamless and secure platform for users, agents, and admins to manage digital transactions.
+PoyshaGhor is a secure and user-friendly digital wallet system where users can send money, cash out using agents, recharge mobile numbers, and manage finances efficiently. The platform defines **three role-based dashboards**: Admin, Agent, and User — each with dedicated functionalities.
 
-### Admin acoount: 
-`{email: ifti@gmail.com | password: Ifti677#$%}`
+---
 
-### Agent account: 
-`{email: agent@gmail.com | password: Agent33@!}`
+## 👥 User Roles & Access
 
-### User account : 
-`{email: User3@gmai.com | password: User33@!}`
+### 🔹 Admin  
+- ✅ Approve newly registered Agents  
+- ✅ Manage Users & Agents  
+- ✅ View all transactions in the system  
 
-## 🚀 Features
-## 👤 User
+📌 Credentials  
+> Email: **admin@gmail.com**  
+> Password: **Abdullah677#$%**
 
-💵 Deposit Money (via Popup)
+---
 
-📤 Send money to another user
+### 🔹 Agent  
+- ✅ Cash-in money to any User  
+- ✅ Mobile Recharge to any valid 11-digit number  
 
-💳 Withdraw funds
+📌 Credentials  
+> Email: **agent6@gmail.com**  
+> Password: **Abdullah677#$%**
 
-📑 View transaction history
+---
 
-## 🧑‍💼 Agent
+### 🔹 User  
+- ✅ Send Money to other users  
+- ✅ Cash-out through an Agent  
+- ✅ Add Money to wallet (Self Deposit)
 
-💰 Add money to a user wallet (Cash-in)
+📌 Credentials  
+> Email: **usert@gmail.com**  
+> Password: **Abdullah677#$%**
 
-🏧 Withdraw money from a user wallet (Cash-out)
+---
 
-📊 View all transactions handled by the agent
+## 🔐 Security Rules
 
-## 🛡️ Admin
+✅ Password must contain:  
+- 1 Capital Letter  
+- 1 Small Letter  
+- 1 Number  
+- 1 Special Character  
+- Minimum 6 Characters  
+> Example: `Random66#$%`
 
-👥 Manage Users (view, block/unblock)
+✅ Profile Photo – direct URL upload (Cloud Upload feature coming soon)
 
-🧑‍💼 Manage Agents (approve, suspend)
-
-📜 View all transactions
-
-🔍 Advanced Search & Filters (category, status, amount, etc.) with pagination for usability
-
-🌐 Common (All Roles)
-
-## 🔑 Profile Management (update name, phone, and password)
+---
 
 ## 🛠️ Tech Stack
-Category	Technology
-⚙️ Framework	React.js, React Router
-🧠 State Mgmt.	Redux Toolkit + RTK Query
-🧩 Language	TypeScript
-🎨 Styling	Tailwind CSS
-🛡️ Security	JWT (persisted login), bcrypt (via backend)
-📊 Extras	Toast Notifications, Responsive UI
-📸 Screenshots (Optional)
 
-Add some preview screenshots of your UI here for better presentation.
+| Category | Technologies |
+|---------|--------------|
+| Frontend | React.js, Tailwind CSS |
+| Backend | Node.js, Express.js |
+| Database | MongoDB |
+| Authentication | Firebase / JWT |
+| State Management | Redux |
+| Tools | Cloudinary (upcoming uploader) |
 
-⚡ Getting Started
-1️⃣ Clone the repository
+---
 
-cd paysha-ghor
+## 🚀 Upcoming Features
 
-2️⃣ Install dependencies
-npm install
+- ✏️ Edit Profile  
+- 💳 Bill Payment  
+- 🧾 Government Fee Payment  
+- 🎓 Education Fee Payment  
+- 🌐 Online Payment System  
 
-3️⃣ Run the development server
-npm run dev
+---
 
-4️⃣ Build for production
-npm run build
+## 📜 License
+This project is proprietary.  
+All rights reserved © 2025 — **Iftikher Lutfur Abdullah**  
+Unauthorized use, distribution, or modification is strictly prohibited.
 
-🔒 Security Practices
 
-#### Passwords are hashed with bcrypt
-
-#### Authentication & Authorization with JWT
-
-#### Persisted login for better user experience
-
+---
